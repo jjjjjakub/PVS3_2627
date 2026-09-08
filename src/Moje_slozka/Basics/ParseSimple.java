@@ -1,6 +1,4 @@
-package Plechovka.Basics;
-
-import java.util.Arrays;
+package Moje_slozka.Basics;
 
 public class ParseSimple {
     public static void main(String[] args) {

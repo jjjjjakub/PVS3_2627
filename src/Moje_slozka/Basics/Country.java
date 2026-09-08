@@ -1,4 +1,4 @@
-package Plechovka.Basics;
+package Moje_slozka.Basics;
 
 public class Country {
     String name, continent;
