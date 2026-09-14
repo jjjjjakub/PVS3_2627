@@ -29,9 +29,9 @@ Bolivia;South America;8329000;63.7
 Brazil;South America;170115000;62.9
 Barbados;North America;270000;73.0
 Brunei;Asia;328000;73.6
-Bhutan;Asia;2124000;52.4
+Bhutan;Asia;20;52.4
 Botswana;Africa;1622000;39.3
-Central African Republic;Africa;3615000;44.0
+Central African Republic;Africa;3615000;4
 Canada;North America;31147000;79.4
 Switzerland;Europe;7160400;79.6
 Chile;South America;15211000;75.7

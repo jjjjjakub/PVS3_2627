@@ -41,7 +41,7 @@ public class ParseFile {
         //Country czechia = new Country("Czech Republic","Europe", 10000000, 85.0);
 
         //System.out.println(czechia);
-
+        de.finishExport();
         di.finishImport();
     }
 }
