@@ -1,12 +1,17 @@
 package Moje_slozka.OOP;
 
+import fileworks.DataImport;
+
+import javax.sound.midi.Soundbank;
+import java.util.ArrayList;
+
 public class Track {
     String name;
     int year;
     double rating;
     int duration;
 
-    public Track(String name, double rating, int duration, int year) {
+    public Track(String name, int year, double rating, int duration) {
         this.name = name;
         this.rating = rating;
         this.duration = duration;
@@ -54,4 +59,25 @@ public class Track {
     public int getDuration() {
         return duration;
     }
+
+    public static void main(String[] args) {
+        DataImport di = new DataImport("data/tracks.txt");
+        ArrayList<Track> tracks = new ArrayList<>();
+
+        while (di.hasNext()) {
+            String line = di.readLine();
+            String[] tokens = line.split(";");
+
+            Track song = new Track(tokens[0],
+                    Integer.parseInt(tokens[1]),
+                    Double.parseDouble(tokens[2]),
+                    Integer.parseInt(tokens[3]));
+            tracks.add(song);
+        }
+        //ArrayList základy:
+        System.out.println(tracks.get(0));
+        System.out.println(tracks.get(tracks.size()-1));
+        di.finishImport();
+    }
+
 }
