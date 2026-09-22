@@ -78,7 +78,7 @@ public class Products {
     }
 
     public static void main(String[] args) {
-        String path = "/data/products.txt";
+        String path = "data/products.txt";
         DataImport di = new DataImport(path);
         ArrayList<Products> products = new ArrayList<>();
 
@@ -86,14 +86,30 @@ public class Products {
             String line = di.readLine();
             String[] tokens = line.split(";");
 
-            Products product = new Products(
-                    tokens[0],
-                    tokens[1],
-                    Integer.parseInt(tokens[2]),
-                    Double.parseDouble(tokens[3]));
-            products.add(product);
+            if (tokens.length == 2){
+                Products product = new Products(
+                        tokens[0],
+                        tokens[1]);
+                products.add(product);
+            }
+            if (tokens.length == 3) {
+                Products product = new Products(
+                        tokens[0],
+                        tokens[1],
+                        Integer.parseInt(tokens[2]));
+                products.add(product);
+            }
+            if (tokens.length == 4){
+                Products product = new Products(
+                        tokens[0],
+                        tokens[1],
+                        Integer.parseInt(tokens[2]),
+                        Double.parseDouble(tokens[3]));
+                products.add(product);
+            }
+
         }
-        System.out.println(products.lastIndexOf(products.getLast()));
+        System.out.println(products.size());
         di.finishImport();
     }
 }
