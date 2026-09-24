@@ -16,13 +16,13 @@ public class Products {
     }
 
     public Products(String name, String category, int amount) {
-        this (name, category);
+        this(name, category);
         this.amount = amount;
     }
 
     public Products(String name, String category, int amount, double pricePerPeice) {
-        this (name, category, amount);
-        this. pricePerPeice = pricePerPeice;
+        this(name, category, amount);
+        this.pricePerPeice = pricePerPeice;
     }
 
     public String getName() {
@@ -52,8 +52,7 @@ public class Products {
     public void setAmount(int amount) {
         if (amount > 0) {
             this.amount = amount;
-        }
-        else {
+        } else {
             this.amount = 0;
         }
     }
@@ -61,8 +60,7 @@ public class Products {
     public void setPricePerPeice(int pricePerPeice) {
         if (this.pricePerPeice > 0) {
             this.pricePerPeice = pricePerPeice;
-        }
-        else {
+        } else {
             this.pricePerPeice = 0;
         }
     }
@@ -82,30 +80,35 @@ public class Products {
         DataImport di = new DataImport(path);
         ArrayList<Products> products = new ArrayList<>();
 
-        while (di.hasNext()){
+        while (di.hasNext()) {
             String line = di.readLine();
             String[] tokens = line.split(";");
 
-            if (tokens.length == 2){
-                Products product = new Products(
-                        tokens[0],
-                        tokens[1]);
-                products.add(product);
-            }
-            if (tokens.length == 3) {
-                Products product = new Products(
-                        tokens[0],
-                        tokens[1],
-                        Integer.parseInt(tokens[2]));
-                products.add(product);
-            }
-            if (tokens.length == 4){
-                Products product = new Products(
-                        tokens[0],
-                        tokens[1],
-                        Integer.parseInt(tokens[2]),
-                        Double.parseDouble(tokens[3]));
-                products.add(product);
+            //if (tokens.length == 2) {
+            //    Products product = new Products(
+            //            tokens[0],
+            //            tokens[1]);
+            //    products.add(product);
+            //}
+            //if (tokens.length == 3) {
+            //    Products product = new Products(
+            //            tokens[0],
+            //            tokens[1],
+            //            Integer.parseInt(tokens[2]));
+            //    products.add(product);
+            //}
+            //if (tokens.length == 4) {
+            //    Products product = new Products(
+            //            tokens[0],
+            //            tokens[1],
+            //            Integer.parseInt(tokens[2]),
+            //            Double.parseDouble(tokens[3]));
+            //    products.add(product);
+            //}
+
+            switch (tokens.length){
+                case 4: products = new Products(tokens[0], tokens[1], Integer.parseInt(tokens[2]), Double.parseDouble(tokens[3]));
+                        breake;
             }
 
         }
