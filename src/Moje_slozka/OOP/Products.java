@@ -79,6 +79,7 @@ public class Products {
         String path = "data/products.txt";
         DataImport di = new DataImport(path);
         ArrayList<Products> products = new ArrayList<>();
+        Products product;
 
         while (di.hasNext()) {
             String line = di.readLine();
@@ -105,14 +106,23 @@ public class Products {
             //            Double.parseDouble(tokens[3]));
             //    products.add(product);
             //}
-
             switch (tokens.length){
-                case 4: products = new Products(tokens[0], tokens[1], Integer.parseInt(tokens[2]), Double.parseDouble(tokens[3]));
-                        breake;
+                case 4: product = new Products(tokens[0], tokens[1], Integer.parseInt(tokens[2]), Double.parseDouble(tokens[3]));
+                    break;
+                case 3: product = new Products(tokens[0], tokens[1], Integer.parseInt(tokens[2]));
+                    break;
+                case 2: product = new Products(tokens[0], tokens[1]);
+                    break;
+                default:
+                    System.out.println("Tento radek nema validni delku: " + line);
+                    product = null;
+                    break;
             }
+            products.add(product);
+
 
         }
-        System.out.println(products.size());
+        System.out.println(products);
         di.finishImport();
     }
 }
