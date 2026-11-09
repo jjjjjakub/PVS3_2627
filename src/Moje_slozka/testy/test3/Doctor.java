@@ -16,6 +16,10 @@ public class Doctor {
         salary += 10000;
     }
 
+    int getSalary(){
+        return salary;
+    }
+
     @Override
     public String toString() {
         return "Doctor{" +

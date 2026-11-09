@@ -2,7 +2,9 @@ package Moje_slozka.testy.test3;
 
 import fileworks.DataExport;
 import fileworks.DataImport;
-import oop.inheritance.Doctor;
+
+import java.util.ArrayList;
+import java.util.Comparator;
 
 // Načtěte ze souboru hospitalData informace o doktorech
 // do souboru hospital.txt vypiste nasledujici informace o vsech doktorech:
@@ -27,6 +29,28 @@ public class Hospital {
         // C -> cardiacSurgery
         // S -> surgery
         // D -> diagnose
+        int penalization = 0;
+        switch (jobType) {
+            case "C":
+                if (d instanceof CardiacSurgeon){
+                    ((CardiacSurgeon) d).cardiacSurgery();
+                }
+                else {
+                    penalization++;
+                }
+                break;
+            case "S":
+                if (d instanceof Surgeon){
+                    ((Surgeon) d).surgery();
+                }
+                else {
+                    penalization++;
+                }
+                break;
+            default:
+                d.diagnose();
+                break;
+        }
     }
 
     public static void main(String[] args) {
@@ -34,9 +58,56 @@ public class Hospital {
         DataExport de = new DataExport("data/salaries.txt");
 
         // TODO: napsat test
+        while (di.hasNext()) {
+            String rada = di.readLine();
+            String[] tokens = rada.split(";");
+
+            ArrayList<Doctor> doctors = new ArrayList<>();
+            switch (tokens[1]){
+                case "CardiacSurgeon":
+                    doctors.add(new CardiacSurgeon(tokens[0]));
+                    break;
+                case "Surgeon":
+                    doctors.add(new Surgeon(tokens[0]));
+                    break;
+                default:
+                    doctors.add(new Doctor(tokens[0]));
+            }
+
+            for (int i = 2; i < tokens.length; i++) {
+                String jobType = tokens[i];
+                validateJob();
+            }
+
+
+        }
+
 
         // nezapomenout na úklid
         di.finishImport();
         de.finishExport();
     }
+
+    Doctor bestSalary(ArrayList<Doctor> doctors) {
+        doctors.sort(Comparator.comparing(Doctor::getSalary));
+        return doctors.getFirst();
+    }
+
+    Doctor worstSalary(ArrayList<Doctor> doctors) {
+        doctors.sort(Comparator.comparing(Doctor::getSalary).reversed());
+        return doctors.getFirst();
+    }
+
+    double averageSalary(ArrayList<Doctor> doctors) {
+        int soucet = 0;
+        double average;
+        for (Doctor doctor : doctors) {
+            soucet += doctor.salary;
+        }
+        average = (double) soucet / doctors.size();
+        return average;
+    }
+
+
+
 }
