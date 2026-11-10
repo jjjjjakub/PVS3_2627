@@ -30,6 +30,7 @@ public class Hospital {
         // S -> surgery
         // D -> diagnose
         int penalization = 0;
+
         switch (jobType) {
             case "C":
                 if (d instanceof CardiacSurgeon){
@@ -76,7 +77,6 @@ public class Hospital {
 
             for (int i = 2; i < tokens.length; i++) {
                 String jobType = tokens[i];
-                validateJob();
             }
 
 
